@@ -1,5 +1,5 @@
 {
-  "name": "collaboration",
+  "name": "akademia-collaboration",
   "version": "0.0.1",
   "description": "Akademia app collaboration backend.",
   "main": "index.js",
