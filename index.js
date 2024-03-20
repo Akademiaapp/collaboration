@@ -26,6 +26,7 @@ const server = new Hocuspocus({
 
     // Check if token is valid
     const decodedToken = middleware.verifyToken(token);
+    console.log("decodedToken", decodedToken)
     if (!decodedToken) {
       throw new Error("Unauthorized - Token verification failed");
     }
