@@ -9,7 +9,7 @@ const verifyToken = (token) => {
   // Verify and decode the token
   axios.get('https://auth.akademia.cc/realms/akademia/protocol/openid-connect/userinfo', {
     headers: {
-      'Authorization': authorization
+      'Authorization': token
     }
   }).then(response => {
     return response.data;
