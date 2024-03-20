@@ -9,10 +9,13 @@
   "type": "module",
   "license": "ISC",
   "dependencies": {
+    "@akademiaapp/schema": "1.0.8",
     "@hocuspocus/server": "^2.11.3",
+    "axios": "^1.6.8",
     "jsonwebtoken": "^9.0.2",
-    "yjs": "^13.6.14",
-    "@akademiaapp/schema": "1.0.8"
+    "yjs": "^13.6.14"
   },
-  "trustedDependencies": ["@akademiaapp/schema"]
+  "trustedDependencies": [
+    "@akademiaapp/schema"
+  ]
 }

@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import axios from "axios";
 
 // Middleware to verify JWT
 const verifyToken = (token) => {
@@ -6,22 +6,17 @@ const verifyToken = (token) => {
     return false;
   }
 
-  try {
-    // Load the public key dynamically
-    const publicKey =
-      "-----BEGIN RSA PUBLIC KEY-----" +
-      "\n" +
-      process.env.AUTH_PUBLIC_KEY +
-      "\n" +
-      "-----END RSA PUBLIC KEY-----";
-
-    // Verify the token
-    const decoded = jwt.verify(token, publicKey, { algorithms: ["RS256"] });
-    return decoded;
-  } catch (error) {
+  // Verify and decode the token
+  axios.get('https://auth.akademia.cc/realms/akademia/protocol/openid-connect/userinfo', {
+    headers: {
+      'Authorization': authorization
+    }
+  }).then(response => {
+    return response.data;
+  }).catch(error => {
     console.error("Token verification failed:", error.message);
     return false;
-  }
+  });
 };
 
 export default { verifyToken };
