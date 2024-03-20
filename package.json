@@ -9,7 +9,7 @@
   "type": "module",
   "license": "ISC",
   "dependencies": {
-    "@akademiaapp/schema": "1.0.8",
+    "@akademiaapp/schema": "1.0.11",
     "@hocuspocus/server": "^2.11.3",
     "axios": "^1.6.8",
     "jsonwebtoken": "^9.0.2",
