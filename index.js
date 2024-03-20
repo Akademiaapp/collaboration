@@ -19,7 +19,7 @@ prisma.$connect().then(() => {
 // Configure the server …
 const server = new Hocuspocus({
   port: 8090,
-  address: "localhost",
+  address: "0.0.0.0",
   onAuthenticate: async (data) => {
     const { token, documentName } = data;
     console.log("onAuthenticate", token, documentName)
