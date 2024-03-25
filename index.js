@@ -94,7 +94,7 @@ const server = new Hocuspocus({
     } else if (documentType === "assignment") {
       document = prisma.assignment;
     } else if (documentType === "assignmentAnswer") {
-      document = await prisma.assignment_answer;
+      document = prisma.assignment_answer;
     }
 
     document
