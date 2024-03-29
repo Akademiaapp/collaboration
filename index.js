@@ -66,12 +66,18 @@ const server = new Hocuspocus({
       throw new Error("Unauthorized - User not found");
     }
 
-    if (
-      !await prisma.file_permission.findFirst({
-        where: { document_id: document.id, user_id: user.id },
-      })
-    ) {
-      throw new Error("Unauthorized - User does not have access to document");
+    if (documentType === "document") {
+      if (
+        !await prisma.file_permission.findFirst({
+          where: { document_id: document.id, user_id: user.id },
+        })
+      ) {
+        throw new Error("Unauthorized - User does not have access to document");
+      }
+    } else {
+      if (document.user_id !== user.id) {
+        throw new Error("Unauthorized - User does not have access to document");
+      }
     }
 
     // Return user id
@@ -123,7 +129,7 @@ const server = new Hocuspocus({
     } else if (documentType === "assignment") {
       document = prisma.assignment;
     } else if (documentType === "assignmentAnswer") {
-      document = await prisma.assignment_answer;
+      document = prisma.assignment_answer;
     }
 
     document
