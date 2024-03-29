@@ -35,20 +35,22 @@ const server = new Hocuspocus({
     const documentType = documentName.split(".")[0];
     const documentId = documentName.split(".")[1];
 
+    console.log("documentName", documentName)
     console.log("documentType", documentType)
+    console.log("documentId", documentId)
 
     // Check if user has access to document
     let document;
-    if (documentType === "document") {
+    if (documentType === "documents") {
       console.log("documentName", documentId)
       document = await prisma.document.findFirst({
         where: { id: documentId },
       });
-    } else if (documentType === "assignment") {
+    } else if (documentType === "assignments") {
       document = await prisma.assignment.findFirst({
         where: { id: documentId },
       });
-    } else if (documentType === "assignmentAnswer") {
+    } else if (documentType === "assignmentAnswers") {
       document = await prisma.assignment_answer.findFirst({
         where: { id: documentId },
       });
@@ -66,7 +68,7 @@ const server = new Hocuspocus({
       throw new Error("Unauthorized - User not found");
     }
 
-    if (documentType === "document") {
+    if (documentType === "documents") {
       if (
         !await prisma.file_permission.findFirst({
           where: { document_id: document.id, user_id: user.id },
@@ -95,11 +97,11 @@ const server = new Hocuspocus({
 
     // Set `document` based on document type
     let document;
-    if (documentType === "document") {
+    if (documentType === "documents") {
       document = prisma.document;
-    } else if (documentType === "assignment") {
+    } else if (documentType === "assignments") {
       document = prisma.assignment;
-    } else if (documentType === "assignmentAnswer") {
+    } else if (documentType === "assignmentAnswers") {
       document = prisma.assignment_answer;
     }
 
@@ -124,11 +126,11 @@ const server = new Hocuspocus({
 
     // Set `document` based on document type
     let document;
-    if (documentType === "document") {
+    if (documentType === "documents") {
       document = prisma.document;
-    } else if (documentType === "assignment") {
+    } else if (documentType === "assignments") {
       document = prisma.assignment;
-    } else if (documentType === "assignmentAnswer") {
+    } else if (documentType === "assignmentAnswers") {
       document = prisma.assignment_answer;
     }
 
