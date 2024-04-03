@@ -77,8 +77,12 @@ const server = new Hocuspocus({
         throw new Error("Unauthorized - User does not have access to document");
       }
     } else if (documentType === "assignmentAnswers") {
-      if (document.student_id !== user.id && !(user.type === "TEACHER" || user.type === 'TEACHER' || user.type === 'ADMIN')) {
-        throw new Error("Unauthorized - User does not have access to document!");
+      if (document.student_id !== user.id) {
+        if (user.type === "ADMIN" || user.type === "TEACHER" || user.type === "TESTER") {
+          return
+        } else {
+          throw new Error("Unauthorized - User does not have access to document");
+        }
       }
     } else if (documentType === "assignments") {
       if (document.teacher_id !== user.id) {
