@@ -77,7 +77,7 @@ const server = new Hocuspocus({
         throw new Error("Unauthorized - User does not have access to document");
       }
     } else if (documentType === "assignmentAnswers") {
-      if (document.student_id !== user.id) {
+      if (document.student_id !== user.id && user.type !== "TEACHER") {
         throw new Error("Unauthorized - User does not have access to document");
       }
     } else if (documentType === "assignments") {
